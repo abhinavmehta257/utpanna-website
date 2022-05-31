@@ -1012,3 +1012,13 @@ header{
   color: #121212;
   font-weight: 600;
 }
+
+.industrySubLink.active{
+  color: #ffc107;
+}
+.industrySubLink{
+  list-style: none!important;
+  font-weight: 300!important;
+  color: #444444;
+  padding-right:30px
+}

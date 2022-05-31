@@ -73,7 +73,39 @@ window.onload = (function() {
       allSlides[i].classList.remove('hide');
       horizontalSlide2 =0;
       document.querySelector('.active-slide2').scrollTo(horizontalSlide2,0);
-  
+      
+      if(i==1){
+        document.querySelectorAll('.industrySubLink').forEach(
+          (element)=>{
+            element.classList.remove('hide');
+          }
+        )
+      }else{
+        document.querySelectorAll('.industrySubLink').forEach(
+          (element)=>{
+            if(!element.classList.contains('hide')){
+            element.classList.add('hide');
+            }
+          }
+        )
+      }
+
+    });
+  })
+
+  document.querySelectorAll('li.industrySubLink').forEach((element)=>{
+    element.addEventListener('click', (e)=>{
+      console.log('event 2');
+      document.querySelectorAll('.industrySubLink').forEach((element)=>{
+        element.classList.remove('active');
+      });
+      e.target.classList.add('active');
+      if(e.target.id == 'medical'){
+      document.querySelector('.active-slide2').scrollTo(0,0);
+      }
+      if(e.target.id == 'product'){
+      document.querySelector('.active-slide2').scrollTo(slider1Scrol2,0);
+      }
     });
   })
 
