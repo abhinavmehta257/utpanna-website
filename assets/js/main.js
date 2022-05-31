@@ -4,6 +4,81 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+horizontalSlide = 0;
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  slider1Scrol1 = 500;
+  slider1Scrol2 = 200;
+}
+else{
+  slider1Scrol1 = 1000;
+  slider1Scrol2 = 500;
+}
+function slidRight(){
+  maxSlide = document.querySelectorAll('.slides > div').length *1000;
+  if(horizontalSlide<(maxSlide-1000)){
+    horizontalSlide+=1000;
+    document.querySelector('.slides').scrollTo(horizontalSlide,0);
+  }else{
+    document.querySelector('.slides').scrollTo(0,0);
+    horizontalSlide = 0;
+  }
+}
+function slidLeft(){
+  maxSlide = document.querySelectorAll('.slides > div').length *1000;
+  if(horizontalSlide>0){
+    horizontalSlide-=1000;
+    document.querySelector('.slides').scrollTo(horizontalSlide,0);
+  }else{
+    document.querySelector('.slides').scrollTo(maxSlide,0);
+    horizontalSlide = maxSlide;
+  }
+}
+
+horizontalSlide2 = 0;
+
+function slidRight2(){
+  maxSlide = document.querySelectorAll('.active-slide2 > div').length *500;
+  if(horizontalSlide2<(maxSlide-500)){
+    horizontalSlide2+=500;
+    document.querySelector('.active-slide2').scrollTo(horizontalSlide2,0);
+  }
+}
+function slidLeft2(){
+  maxSlide = document.querySelectorAll('.active-slide2 > div').length *500;
+  if(horizontalSlide2>0){
+    horizontalSlide2-=500;
+    document.querySelector('.active-slide2').scrollTo(horizontalSlide2,0);
+  }
+}
+
+//work links selection
+
+window.onload = (function() {
+  allSlides = document.querySelectorAll('.slider > .slides2');
+  document.querySelectorAll('.work-links > .link').forEach((element)=>{
+    element.addEventListener('click', (e)=>{
+      document.querySelectorAll('.work-links > .link').forEach((element)=>{
+        element.classList.remove('active');
+      });
+      e.target.classList.add('active');
+      console.log(e.target.id);
+      allSlides.forEach((element)=>{
+        if(element.classList.contains('active-slide2')){
+          element.classList.remove('active-slide2');
+          element.classList.add('hide');
+        }
+      });
+      i=e.target.id[e.target.id.length-1] -1;
+      allSlides[i].classList.add('active-slide2');
+      allSlides[i].classList.remove('hide');
+      horizontalSlide2 =0;
+      document.querySelector('.active-slide2').scrollTo(horizontalSlide2,0);
+  
+    });
+  })
+
+})();
+
 (function() {
   "use strict";
 
@@ -122,6 +197,11 @@
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
   })
+  on('click', '.close', function(e) {
+    select('#navbar').classList.toggle('navbar-mobile')
+    select('.mobile-nav-toggle').classList.toggle('bi-list')
+    select('.mobile-nav-toggle').classList.toggle('bi-x')
+  })
 
   /**
    * Mobile nav dropdowns activate
@@ -175,9 +255,9 @@
   /**
    * Initiate glightbox
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
+  // const glightbox = GLightbox({
+  //   selector: '.glightbox'
+  // });
 
   /**
    * Skills animation
@@ -247,9 +327,9 @@
   /**
    * Initiate portfolio lightbox 
    */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
+  // const portfolioLightbox = GLightbox({
+  //   selector: '.portfolio-lightbox'
+  // });
 
   /**
    * Portfolio details slider
@@ -282,3 +362,57 @@
 
 })()
 
+const carouselText = [
+  { text: "Apple", color: "red" },
+  { text: "Orange", color: "orange" },
+  { text: "Lemon", color: "yellow" }
+];
+
+$(document).ready(async function () {
+  carousel(carouselText, "#feature-text");
+});
+
+async function typeSentence(sentence, eleRef, delay = 100) {
+  const letters = sentence.split("");
+  let i = 0;
+  while (i < letters.length) {
+    await waitForMs(delay);
+    $(eleRef).append(letters[i]);
+    i++;
+  }
+  return;
+}
+
+async function deleteSentence(eleRef) {
+  const sentence = $(eleRef).html();
+  const letters = sentence.split("");
+  let i = 0;
+  while (letters.length > 0) {
+    await waitForMs(100);
+    letters.pop();
+    $(eleRef).html(letters.join(""));
+  }
+}
+
+async function carousel(carouselList, eleRef) {
+  var i = 0;
+  while (true) {
+    updateFontColor(eleRef, carouselList[i].color);
+    await typeSentence(carouselList[i].text, eleRef);
+    await waitForMs(1500);
+    await deleteSentence(eleRef);
+    await waitForMs(500);
+    i++;
+    if (i >= carouselList.length) {
+      i = 0;
+    }
+  }
+}
+
+function updateFontColor(eleRef, color) {
+  $(eleRef).css("color", color);
+}
+
+function waitForMs(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
