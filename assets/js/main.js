@@ -121,9 +121,7 @@ function slidLeft2(){
 //check article is in view 
 // document.querySelector('.articles-slides').onscroll(checkArticleIsInView)
 window.onload = (function() {
-  document.querySelector('.articles-slides').addEventListener('scroll',checkArticleIsInView)
-  document.querySelector('.active-slide2').addEventListener('scroll',checkworkSlideIsInView)
-  allSlides = document.querySelectorAll('.slider > .slides2');
+  
   document.querySelectorAll('.work-links > .link').forEach((element)=>{
     element.addEventListener('click', (e)=>{
       document.querySelectorAll('.work-links > .link').forEach((element)=>{

@@ -665,7 +665,9 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    
+    document.querySelector('.articles-slides').addEventListener('scroll',checkArticleIsInView)
+  document.querySelector('.active-slide2').addEventListener('scroll',checkworkSlideIsInView)
+  allSlides = document.querySelectorAll('.slider > .slides2');    
 
     const typedTextSpan = document.querySelector(".typed-text");
     const cursorSpan = document.querySelector(".cursor");
