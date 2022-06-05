@@ -122,6 +122,12 @@ h1, h2, h3, h4, h5, h6 {
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
+  .bnr-btn{
+    float: right;
+  }
+  .navbar a i{
+    font-size: 15px;
+  }
   .form{
     margin: 50px 0 ;
   }
@@ -205,7 +211,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   padding: 0;
   margin: 0 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: #999999;
   white-space: nowrap;
@@ -313,6 +319,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 991px) {
+  .bnr-btn{
+    float: right;
+  }
+  .navbar a i{
+    font-size: 15px;
+  }
   .navbar > ul > li .close{
     display: block !important;
   }
@@ -411,6 +423,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
   color: #850101;
+  
 }
 .navbar-mobile .dropdown > .dropdown-active {
   display: block;
@@ -750,7 +763,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-sec h2{
-  font-size: 22px;
+  font-size: 42px;
   margin-bottom: 20px;
   font-family: 'Cambon';
   color: #121212;
@@ -784,7 +797,7 @@ h1, h2, h3, h4, h5, h6 {
 .cpy-sec p{
   color: #fff;
   margin-bottom: 0;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 
