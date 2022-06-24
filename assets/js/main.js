@@ -426,7 +426,7 @@ window.onload = (function() {
 
   });
 
-  if(!(window.location.hostname != 'cerulean-bonbon-9ec587.netlify.app' && window.location.hostname == 'localhost') ){
+  if(window.location.hostname != 'cerulean-bonbon-9ec587.netlify.app'){
     document.body.style.opacity = 0;
   }
 
