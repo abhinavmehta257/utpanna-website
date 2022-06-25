@@ -80,7 +80,7 @@ workSlideIndicator = 1;
 
 function updateCurrentWorkSlideIndicator(currentworkSlide){
   currentSlideIndicator = document.querySelector('.work-indicator .current-slide');
-  // currentSlideIndicator.innerText = currentworkSlide+1;
+  // currentSlideIndicator.innerText = currentworkSlide;
 }
 
 function checkworkSlideIsInView(){
@@ -95,24 +95,56 @@ function checkworkSlideIsInView(){
 }
 
 
+
 function slidRight2(){
   workSlides = document.querySelectorAll('.active-slide2 > div');
   maxSlide = document.querySelectorAll('.active-slide2 > div').length;
 
+  
+
   if(currentWorkSlide < maxSlide-1){
     currentWorkSlide++;
     workSlides[currentWorkSlide].scrollIntoViewIfNeeded()
-    // updateCurrentArticleSlideIndicator(currentArticleSlide)
+    // updateCurrentWorkSlideIndicator(currentWorkSlide)
+    console.log(currentWorkSlide);
+  }
+  if(currentWorkSlide == maxSlide-1){
+    workRightarrow.style.opacity = .5;
+  }
+  if(currentWorkSlide < maxSlide-1){
+    workRightarrow.style.opacity = 1;
+  }
+  if(currentWorkSlide > 0){
+    workLeftarrow.style.opacity = 1;
+  }
+  if(currentWorkSlide == 0){
+    workLeftarrow.style.opacity = .5;
   }
 }
 function slidLeft2(){
   workSlides = document.querySelectorAll('.active-slide2 > div');
   maxSlide = document.querySelectorAll('.active-slide2 > div').length;
 
+  
+
   if(currentWorkSlide >0){
     currentWorkSlide--;
     workSlides[currentWorkSlide].scrollIntoViewIfNeeded()
-    // updateCurrentArticleSlideIndicator(currentArticleSlide)
+    // updateCurrentWorkSlideIndicator(currentWorkSlide)
+    console.log(currentWorkSlide);
+
+  }
+  if(currentWorkSlide == maxSlide-1){
+    workRightarrow.style.opacity = .5;
+  }
+  if(currentWorkSlide < maxSlide-1){
+    workRightarrow.style.opacity = 1;
+  }
+  if(currentWorkSlide > 0){
+    workLeftarrow.style.opacity = 1;
+  }
+  if(currentWorkSlide == 0){
+    workLeftarrow.style.opacity = .5;
   }
 
 }
@@ -121,9 +153,29 @@ function slidLeft2(){
 //check article is in view 
 // document.querySelector('.articles-slides').onscroll(checkArticleIsInView)
 window.onload = (function() {
-  
+ function updateWorkArrows(){ 
+  workLeftarrow = document.querySelector(".slide2-left");
+  workRightarrow = document.querySelector(".slide2-right");
+  maxSlide = document.querySelectorAll('.active-slide2 > div').length;
+
+  if(currentWorkSlide == maxSlide-1){
+    workRightarrow.style.opacity = .5;
+  }
+  if(currentWorkSlide < maxSlide-1){
+    workRightarrow.style.opacity = 1;
+  }
+  if(currentWorkSlide > 0){
+    workLeftarrow.style.opacity = 1;
+  }
+  if(currentWorkSlide == 0){
+    workLeftarrow.style.opacity = .5;
+  }
+  console.log('arrow update'+"max:"+maxSlide+"current:"+currentWorkSlide)
+}
+  updateWorkArrows();
   document.querySelectorAll('.work-links > .link').forEach((element)=>{
     element.addEventListener('click', (e)=>{
+      
       document.querySelectorAll('.work-links > .link').forEach((element)=>{
         element.classList.remove('active');
       });
@@ -156,6 +208,7 @@ window.onload = (function() {
           }
         )
       }
+      updateWorkArrows();
 
     });
 
@@ -426,9 +479,9 @@ window.onload = (function() {
 
   });
 
-  if(window.location.hostname != 'cerulean-bonbon-9ec587.netlify.app'){
-    document.body.style.opacity = 0;
-  }
+  // if(window.location.hostname != 'cerulean-bonbon-9ec587.netlify.app'){
+  //   document.body.style.opacity = 0;
+  // }
 
   /**
    * Initiate portfolio lightbox 
