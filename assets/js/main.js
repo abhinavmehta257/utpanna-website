@@ -80,7 +80,7 @@ workSlideIndicator = 1;
 
 function updateCurrentWorkSlideIndicator(currentworkSlide){
   currentSlideIndicator = document.querySelector('.work-indicator .current-slide');
-  // currentSlideIndicator.innerText = currentworkSlide;
+  // currentSlideIndicator.innerText = currentworkSlide+1;
 }
 
 function checkworkSlideIsInView(){
@@ -152,8 +152,7 @@ function slidLeft2(){
 //work links selection
 //check article is in view 
 // document.querySelector('.articles-slides').onscroll(checkArticleIsInView)
-window.onload = (function() {
- function updateWorkArrows(){ 
+function updateWorkArrows(){ 
   workLeftarrow = document.querySelector(".slide2-left");
   workRightarrow = document.querySelector(".slide2-right");
   maxSlide = document.querySelectorAll('.active-slide2 > div').length;
@@ -172,7 +171,9 @@ window.onload = (function() {
   }
   console.log('arrow update'+"max:"+maxSlide+"current:"+currentWorkSlide)
 }
-  updateWorkArrows();
+window.onload = (function() {
+ 
+
   document.querySelectorAll('.work-links > .link').forEach((element)=>{
     element.addEventListener('click', (e)=>{
       
@@ -208,8 +209,8 @@ window.onload = (function() {
           }
         )
       }
+      currentWorkSlide=0;
       updateWorkArrows();
-
     });
 
       
