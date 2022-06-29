@@ -48,7 +48,6 @@ function checkArticleIsInView(){
   articleSlide = document.querySelectorAll('.articles-slides > div');
   articleSlide.forEach((element,index)=>{
     if(isInViewport(element)){
-      console.log(isInViewport(element),index);
     currentArticleSlide = index;
     updateCurrentArticleSlideIndicator(currentArticleSlide)
     }
@@ -78,18 +77,45 @@ function slidLeft(){
 currentWorkSlide = 0;
 workSlideIndicator = 1;
 
-function updateCurrentWorkSlideIndicator(currentworkSlide){
+// Setup isScrolling variable
+var isScrolling;
+
+// Listen for scroll events
+
+function updateCurrentWorkSlideIndicator(){
+  maxSlide = document.querySelectorAll('.active-slide2 > div').length;
+  slider = document.querySelector(".active-slide2");
   currentSlideIndicator = document.querySelector('.work-indicator .current-slide');
-  // currentSlideIndicator.innerText = currentworkSlide+1;
+  totalWorkSlides = document.querySelector('.work-indicator .total-slides');
+  slider.addEventListener('scroll', function ( event ) {
+
+    // Clear our timeout throughout the scroll
+    window.clearTimeout( isScrolling );
+  
+    // Set a timeout to run after scrolling ends
+    isScrolling = setTimeout(function() {
+  
+      // Run the callback
+      console.log( 'Scrolling has stopped.' );
+      currentSlideIndicator.innerText = workSlideIndicator;
+      
+    }, 66);
+  
+  }, false);
+  
+  totalWorkSlides.innerText = maxSlide;
 }
+
+
 
 function checkworkSlideIsInView(){
   workSlide = document.querySelectorAll('.active-slide2 > div');
   workSlide.forEach((element,index)=>{
     if(isInViewport(element)){
       currentworkSlide = index;
-      console.log(index);
-      updateCurrentWorkSlideIndicator(currentworkSlide)
+      // console.log(index);
+      
+      // updateCurrentWorkSlideIndicator(currentworkSlide)
     }
   })
 }
@@ -105,8 +131,8 @@ function slidRight2(){
   if(currentWorkSlide < maxSlide-1){
     currentWorkSlide++;
     workSlides[currentWorkSlide].scrollIntoViewIfNeeded()
-    // updateCurrentWorkSlideIndicator(currentWorkSlide)
-    console.log(currentWorkSlide);
+    ++workSlideIndicator;
+    updateCurrentWorkSlideIndicator()
   }
   if(currentWorkSlide == maxSlide-1){
     workRightarrow.style.opacity = .5;
@@ -130,8 +156,8 @@ function slidLeft2(){
   if(currentWorkSlide >0){
     currentWorkSlide--;
     workSlides[currentWorkSlide].scrollIntoViewIfNeeded()
-    // updateCurrentWorkSlideIndicator(currentWorkSlide)
-    console.log(currentWorkSlide);
+    --workSlideIndicator
+    updateCurrentWorkSlideIndicator()
 
   }
   if(currentWorkSlide == maxSlide-1){
@@ -169,7 +195,7 @@ function updateWorkArrows(){
   if(currentWorkSlide == 0){
     workLeftarrow.style.opacity = .5;
   }
-  console.log('arrow update'+"max:"+maxSlide+"current:"+currentWorkSlide)
+  // console.log('arrow update'+"max:"+maxSlide+"current:"+currentWorkSlide)
 }
 window.onload = (function() {
  
@@ -181,7 +207,6 @@ window.onload = (function() {
         element.classList.remove('active');
       });
       e.target.classList.add('active');
-      console.log(e.target.id);
       allSlides.forEach((element)=>{
         if(element.classList.contains('active-slide2')){
           element.classList.remove('active-slide2');
@@ -210,7 +235,9 @@ window.onload = (function() {
         )
       }
       currentWorkSlide=0;
+      workSlideIndicator = 1;
       updateWorkArrows();
+      updateCurrentWorkSlideIndicator();
     });
 
       
@@ -219,7 +246,6 @@ window.onload = (function() {
 
   document.querySelectorAll('li.industrySubLink').forEach((element)=>{
     element.addEventListener('click', (e)=>{
-      console.log('event 2');
       document.querySelectorAll('.industrySubLink').forEach((element)=>{
         element.classList.remove('active');
       });

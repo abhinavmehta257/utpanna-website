@@ -1170,3 +1170,10 @@ header{
 .articles-slides > .slide{
   justify-content: space-around;
 }
+
+.work-indicator{
+  max-width: 20px;
+  min-width: 20px;
+  display: flex;
+  margin-left: -10px;
+}
