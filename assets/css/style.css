@@ -297,7 +297,9 @@ h1, h2, h3, h4, h5, h6 {
   visibility: visible;
 }
 @media (max-width: 1366px) {
-  
+  .work-indicator{
+    margin-top:100px;
+  }
   .close{
     display: none;
   }
@@ -1129,13 +1131,13 @@ header{
 .container, .container-md, .container-sm {
     max-width: 95%;
 }
-}
+} */
 @media (min-width: 576px){
   
-.container, .container-sm {
-    max-width: 95%;
+  .work-indicator{
+    margin-top:100px;
+  }
 }
-} */
 
 .color2{
   background-color: #fcf9ef;
@@ -1175,5 +1177,6 @@ header{
   max-width: 20px;
   min-width: 20px;
   display: flex;
-  margin-left: -10px;
+  margin-left: -20px;
+  align-items: center;
 }
