@@ -1180,3 +1180,14 @@ header{
   margin-left: -20px;
   align-items: center;
 }
+
+
+.ftr-cnt a{
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+#footer a{
+  font-size: 20px;
+  font-weight: 300;
+}
